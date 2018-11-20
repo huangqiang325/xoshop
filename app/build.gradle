@@ -1,0 +1,233 @@
+apply plugin: 'com.android.application'
+
+def cfg = rootProject.ext.configuration
+def libs = rootProject.ext.libraries
+
+android {
+    //use legacy for android 6.0
+    //useLibrary 'org.apache.http.legacy'
+
+    compileSdkVersion cfg.compileVersion
+    buildToolsVersion cfg.buildToolsVersion
+    sourceSets.main {
+        jniLibs.srcDirs 'src/main/jniLibs' // <-- Set your folder here!
+    }
+    dexOptions {
+        incremental true
+        javaMaxHeapSize "4g"
+    }
+    defaultConfig {
+        applicationId "com.kulian"
+        minSdkVersion cfg.minSdk
+        targetSdkVersion cfg.targetSdk
+        versionCode cfg.versionCode
+        versionName cfg.versionName
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        ndk {
+            abiFilters "armeabi-v7a", "x86"
+        }
+        manifestPlaceholders = [
+                JPUSH_PKGNAME: applicationId,
+                JPUSH_APPKEY : "e53a6b0a157feb97109e4790", //JPush上注册的包名对应的appkey.
+                JPUSH_CHANNEL: "developer-default", //暂时填写默认值即可.
+        ]
+        vectorDrawables.useSupportLibrary = true
+        multiDexEnabled true
+    }
+
+    packagingOptions {
+        exclude 'META-INF/rxjava.properties'
+    }
+
+
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+    signingConfigs {
+        release {
+            storeFile file(MYAPP_RELEASE_STORE_FILE)
+            storePassword MYAPP_RELEASE_STORE_PASSWORD
+            keyAlias MYAPP_RELEASE_KEY_ALIAS
+            keyPassword MYAPP_RELEASE_KEY_PASSWORD
+        }
+    }
+
+    buildTypes {
+        //保证release跟debug的签名一致
+        debug {
+            signingConfig signingConfigs.release
+            debuggable true
+            zipAlignEnabled false
+        }
+        release {
+            minifyEnabled false
+            zipAlignEnabled true
+            shrinkResources false
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+        }
+    }
+    //applicationVariants are e.g. debug, release
+    applicationVariants.all { variant ->
+        variant.outputs.each { output ->
+            // For each separate APK per architecture, set a unique version code as described here:
+            // http://tools.android.com/tech-docs/new-build-system/user-guide/apk-splits
+            def versionCodes = ["armeabi-v7a": 1, "x86": 2]
+            def abi = output.getFilter(com.android.build.OutputFile.ABI)
+            if (abi != null) {  // null for the universal-debug, universal-release variants
+                output.versionCodeOverride =
+                        versionCodes.get(abi) * 1048576 + defaultConfig.versionCode
+            }
+        }
+    }
+}
+apply plugin: "com.mob.sdk"
+// 在MobSDK的扩展中注册ShareSDK的相关信息
+MobSDK {
+    appKey "2575722debe1c"
+    appSecret "107993691529b5beb17e9b4d52fa7349"
+
+    ShareSDK {
+        //平台配置信息
+
+        devInfo {
+            Wechat {
+                appId "wx6c10d0b279e26436"
+                appSecret "42dfa9ee36238b6b1da884fdd72913ac"
+            }
+            WechatMoments {
+                appId "wx6c10d0b279e26436"
+                appSecret "42dfa9ee36238b6b1da884fdd72913ac"
+            }
+        }
+    }
+
+}
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+
+    //noinspection GradleCompatible
+    implementation "com.android.support:appcompat-v7:${libs.supportVersion}"
+    implementation "com.android.support.constraint:constraint-layout:${libs.constraint_layout}"
+    implementation "com.android.support:design:${libs.supportVersion}"
+    implementation "com.android.support:support-v13:${libs.supportVersion}"
+    implementation "com.android.support:support-vector-drawable:${libs.supportVersion}"
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+
+    /**
+
+     *    RxJava
+
+     */
+    implementation "io.reactivex.rxjava2:rxjava:${libs.rxjava}"
+    implementation "io.reactivex.rxjava2:rxandroid:${libs.rxandroid}"
+
+    /**
+     *    retrofit2
+     */
+    implementation "com.squareup.retrofit2:retrofit:${libs.retrofit}"
+    implementation "com.squareup.retrofit2:adapter-rxjava:${libs.retrofit}"
+    implementation "com.squareup.retrofit2:converter-gson:${libs.retrofit}"
+    implementation "com.jakewharton.retrofit:retrofit2-rxjava2-adapter:${libs.rxjava2_adapter}"
+
+    /**
+     *   okhttp
+     */
+    implementation "com.squareup.okhttp3:okhttp:${libs.okhttp3}"
+    implementation "com.squareup.okhttp3:logging-interceptor:${libs.logging}"
+
+    /**
+     *   rxbinding2
+     */
+    implementation 'com.jakewharton.rxbinding2:rxbinding:2.0.0'
+
+    /**
+     *   fastjson
+     */
+    implementation 'com.alibaba:fastjson:1.1.56.android'
+
+    /**
+     *      butterknife
+     */
+    implementation "com.jakewharton:butterknife:${libs.butterknife}"
+    annotationProcessor "com.jakewharton:butterknife-compiler:${libs.butterknife}"
+
+    /**
+     *      RxPermission
+     */
+    implementation 'com.facebook.fresco:imagepipeline-okhttp:0.9.0'
+    implementation 'com.facebook.fresco:fresco:0.9.0'
+    implementation 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar'
+    implementation 'com.youth.banner:banner:1.4.10'
+    implementation 'com.squareup.picasso:picasso:2.5.2'
+    implementation 'com.github.bumptech.glide:glide:3.7.0'
+    implementation 'com.android.support:recyclerview-v7:23.4.0'
+    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-14'
+    implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.0-alpha-14'
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.31'
+    implementation 'jp.wasabeef:glide-transformations:2.0.1'
+    implementation 'com.android.support:design:25.0.0'
+    implementation 'com.huxq17.xrefreshview:xrefreshview:3.6.9'
+
+    //画廊banner
+    implementation 'com.github.joker-fu:BannerPager:0.1.0'
+
+    //    //仿ios密码输入框
+
+    //    compile 'com.jungly:gridPasswordView:0.3'
+
+    //支持侧滑
+    implementation 'com.justkiddingbaby:slidemenu:1.3.0'
+
+    //聊天
+    implementation 'com.jude:easyrecyclerview:4.2.3'
+    implementation 'org.greenrobot:eventbus:3.0.0'
+    implementation 'com.qiniu:qiniu-android-sdk:7.3.+'
+    implementation 'org.java-websocket:Java-WebSocket:1.3.8'
+
+    //图表
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
+
+    //    compile 'com.github.darrenfantasy:DoubleDatePicker:1.0'双时间选择器
+
+    // add library
+    implementation 'com.github.clans:fab:1.6.4'
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.1'
+
+    //动画库
+    implementation 'com.wang.avi:library:2.1.3'
+    implementation 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'
+
+    //其他插件 弹窗 选择图片等
+    implementation 'com.jzxiang.pickerview:TimePickerDialog:1.0.1'
+    implementation 'cn.finalteam:galleryfinal:1.4.8.7'
+    implementation 'com.bigkoo:alertview:1.0.3'
+
+    //用作轮播 引导图
+    implementation 'com.nineoldandroids:library:2.4.0'
+    implementation 'com.flyco.banner:FlycoBanner_Lib:2.0.2@aar'
+    implementation 'cn.jiguang.sdk:jpush:3.1.5'
+
+    // 此处以JPush 3.1.5 版本为例。
+    implementation 'cn.jiguang.sdk:jcore:1.2.3'
+
+    // 此处以JCore 1.2.3 版本为例。
+    implementation project(':appupdatelibrary')
+
+    //动画库
+    implementation 'com.github.florent37:viewanimator:1.1.0'
+
+    //Optional compile for GCM (Google Cloud Messaging).
+
+    //    implementation 'com.google.android.gms:play-services-gcm:9.4.0'
+
+    //    implementation 'com.hyphenate:hyphenate-sdk:3.3.0'
+    implementation files('src/main/jniLibs/hyphenatechat_3.5.2.jar')
+}

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <!-- 状态栏 -->
+    <LinearLayout
+        android:id="@+id/linearlayout_status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical"></LinearLayout>
+
+    <!-- 标题栏 -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/imagebutton_back"
+            android:layout_width="22dp"
+            android:layout_height="17dp"
+            android:layout_gravity="left|center_vertical"
+            android:layout_marginLeft="10dp"
+            android:background="@color/transparent"
+            android:src="@drawable/fanhui_gray" />
+
+        <TextView
+            android:id="@+id/textview_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="popdemo"
+            android:textColor="@color/mainColor"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+    </FrameLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/linecolor"></View>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/btn_top"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="顶部向下弹出" />
+
+        <Button
+            android:id="@+id/btn_toRight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="左部向右弹出" />
+
+        <Button
+            android:id="@+id/btn_toLeft"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:text="右部向左弹出" />
+
+        <Button
+            android:id="@+id/btn_bottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:text="底部向上弹出" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_middle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="中间弹出" />
+
+            <Button
+                android:id="@+id/btn_middle_dropdown"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:text="中间向下弹出" />
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>

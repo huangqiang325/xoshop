@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tl="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.jkb.slidemenu.SlideMenuLayout
+        android:id="@+id/mainSlideMenu"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        app:allowDragging="false"
+        app:contentAlpha="0.5"
+        app:contentToggle="true"
+        app:parallax="true"
+        app:slideMode="both">
+
+        <include layout="@layout/__layout_sliding_left" />
+
+        <include layout="@layout/__layout_sliding_right" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/rl_top"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:id="@+id/linearlayout_status"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#eeeeee"
+                    android:orientation="vertical" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="@color/white">
+
+                    <Button
+                        android:id="@+id/btn_left"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp" />
+
+                    <TextView
+                        android:id="@+id/title_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_centerVertical="true"
+                        android:gravity="center"
+                        android:text="@string/app_name"
+                        android:textColor="@color/white"
+                        android:textSize="17sp" />
+
+                    <Button
+                        android:id="@+id/btn_right"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/fl_change"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="10"></RelativeLayout>
+
+            <com.flyco.tablayout.CommonTabLayout
+                android:id="@+id/tl_3"
+                android:layout_width="match_parent"
+                android:layout_height="49dp"
+                android:layout_gravity="bottom"
+                android:background="#ffffff"
+                tl:tl_iconGravity="TOP"
+                tl:tl_iconHeight="28dp"
+                tl:tl_iconWidth="28dp"
+                tl:tl_indicator_anim_enable="true"
+                tl:tl_indicator_bounce_enable="true"
+                tl:tl_indicator_color="#2C97DE"
+                tl:tl_indicator_height="0dp"
+                tl:tl_textSelectColor="@color/mainColor"
+                tl:tl_textUnselectColor="#565656"
+                tl:tl_textsize="11sp"
+                tl:tl_underline_color="#DDDDDD"
+                tl:tl_underline_gravity="TOP"
+                tl:tl_underline_height="1dp" />
+        </LinearLayout>
+    </com.jkb.slidemenu.SlideMenuLayout>
+
+</RelativeLayout>

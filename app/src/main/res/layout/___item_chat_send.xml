@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingBottom="4dp"
+    android:paddingTop="2dp"
+
+    >
+
+
+    <RelativeLayout
+        android:id="@+id/rl_"
+        android:layout_marginTop="3dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/shape_background_chattime_4dp"
+        android:padding="6dp">
+
+        <TextView
+            android:id="@+id/chat_item_date"
+            style="@style/text_body"
+            android:layout_centerInParent="true"
+            />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="58dp"
+        android:layout_marginTop="10dp">
+
+        <ImageView
+            android:id="@+id/chat_item_header"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:scaleType="fitCenter" />
+
+        <RelativeLayout
+            android:id="@+id/chat_item_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="5dp"
+            android:layout_toLeftOf="@id/chat_item_header">
+
+            <com.kulian.util.chat.widget.BubbleImageView
+                android:id="@+id/chat_item_content_image"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:scaleType="fitXY"
+                android:visibility="gone"
+                app:angle="6dp"
+                app:arrowHeight="8dp"
+                app:arrowLocation="right"
+                app:arrowPosition="15dp"
+                app:arrowWidth="10dp" />
+
+            <LinearLayout
+                android:id="@+id/chat_item_layout_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:background="@mipmap/df_right"
+                android:gravity="right|center_vertical"
+                android:orientation="horizontal"
+                android:padding="@dimen/content_vertical_margin">
+
+                <com.kulian.util.chat.widget.GifTextView
+                    android:id="@+id/chat_item_content_text"
+                    style="@style/text_subhead_black"
+                    android:layout_marginRight="@dimen/content_horizontal_margin"
+                    android:textColor="@color/white" />
+
+                <ImageView
+                    android:id="@+id/chat_item_voice"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_marginRight="72dp"
+                    android:scaleType="fitCenter"
+                    android:src="@mipmap/icon_voice_right3"
+                    android:visibility="gone" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/chat_item_voice_time"
+            style="@style/text_body"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/content_vertical_margin"
+            android:layout_toLeftOf="@+id/chat_item_layout"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/chat_item_fail"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/content_vertical_margin"
+            android:layout_toLeftOf="@+id/chat_item_voice_time"
+            android:focusable="false"
+            android:src="@drawable/msg_state_fail_resend"
+            android:visibility="gone" />
+
+        <ProgressBar
+            android:id="@+id/chat_item_progress"
+            style="@android:style/Widget.ProgressBar.Small.Inverse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/content_vertical_margin"
+            android:layout_toLeftOf="@+id/chat_item_voice_time"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+</LinearLayout>

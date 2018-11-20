@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="mainColor">#272427</color>
+    <color name="secondColor">#DEAC5E</color>
+    <color name="black">#000000</color>
+    <color name="navpage">#FFE1E8EB</color>
+    <color name="transparent">#00000000</color>
+    <color name="shadow">#cc222222</color>
+    <color name="white">#ffffff</color>
+    ˙
+    <!-- jgd-->
+    <!-- jgd-->
+    <!-- HQ-->
+    <color name="refresh_back">#ededed</color>
+    <color name="square">#000000</color>
+    <color name="c3">#dedede</color>
+    <color name="line_bg">#CDCDCD</color>
+    <color name="c7">#383838</color>
+    <color name="c9">#cc3333</color>
+    <color name="linecolor">#D0D0D0</color>
+    <color name="textcolor">#AAAAAA</color>
+    <color name="text_select">#318DFF</color>
+    <color name="translucent">#AA000000</color>
+    <!-- 其它背景色或分割线相关 -->
+    <color name="divider_line">#d9d9d9</color>
+    <color name="textRed">#ffff5a5a</color>
+
+    <!-- 字体色 -->
+    <color name="text_title">#1b1b1b</color>
+    <color name="color_white_66ffffff">#66ffffff</color>
+</resources>

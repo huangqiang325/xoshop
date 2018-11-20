@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/guide3"/>
+    <Button
+        android:id="@+id/btn_enter"
+        android:layout_width="100dp"
+        android:layout_height="35dp"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="30dp"
+        android:textColor="@color/white"
+        android:text="开始体验"
+        android:textSize="18sp"
+        android:background="@drawable/shape_background_btn_maincolor"
+        android:visibility="visible" />
+
+</FrameLayout>

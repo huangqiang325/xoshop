@@ -1,0 +1,155 @@
+<resources>
+
+
+
+    <!-- Base application theme. -->
+    <style name="NavPage">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:gravity">center_horizontal</item>
+        <!-- <item name="android:background">@drawable/nav_page</item> -->
+        <item name="android:background">@color/navpage</item>
+    </style>
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowTranslucentStatus">true</item>
+    </style>
+    <style name="ActivityTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowAnimationStyle">@style/enterandentrance</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowIsTranslucent">true</item>
+
+    </style>
+
+    <style name="ThemeSplash" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowTranslucentStatus">true</item>
+    </style>
+    <style name="ThemeNoTranslucentStatus" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowTranslucentStatus">false</item>
+    </style>
+    <style name="MyDialogStyle">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+    <!-- hq -->
+    <style name="horizontal_line">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1px</item>
+        <item name="android:background">@color/c3</item>
+    </style>
+
+    <style name="anim_push_bottom" parent="@android:style/Animation">
+        <item name="android:windowEnterAnimation">@anim/push_bottom_in</item>
+        <item name="android:windowExitAnimation">@anim/push_bottom_out</item>
+    </style>
+
+    <style name="text_subhead_black">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/text_title</item>
+        <item name="android:textSize">@dimen/text_subhead</item>
+    </style>
+
+    <style name="text_body">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/text_body</item>
+    </style>
+    <!--转场效果-->
+    <style name="enterandentrance"  >
+        <item name="android:activityOpenEnterAnimation">@anim/anim_enter</item>
+        <item name="android:activityOpenExitAnimation">@anim/anim_exit</item>
+        <item name="android:activityCloseEnterAnimation">@anim/back_enter</item>
+        <item name="android:activityCloseExitAnimation">@anim/back_exit</item>
+    </style>
+    <!--双时间选择器-->
+    <style name="Dialog.NoTitle" parent="Theme.AppCompat.Dialog">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowAnimationStyle">@style/AnimationPicker</item>
+        <!--添加黑色蒙版-->
+        <!--<item name="android:backgroundDimEnabled">false</item>-->
+    </style>
+    <!--双时间选择器动画-->
+    <style name="AnimationPicker" mce_bogus="1" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/_timerangepicker_slide_in_bottom</item>
+        <item name="android:windowExitAnimation">@anim/_timerangepicker_slide_out_bottom</item>
+    </style>
+    <!-- hq -->
+    <!--jgd-->
+    <declare-styleable name="RotateTextView">
+        <attr name="degree" format="dimension" />
+    </declare-styleable>
+
+    <style name="AnimationFade">
+        <!-- PopupWindow左右弹出的效果 -->
+        <item name="android:windowEnterAnimation">@anim/inuptodown</item>
+        <item name="android:windowExitAnimation">@anim/outdowntoup</item>
+    </style>
+
+    <style name="MyAlertDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <!-- Used for the buttons -->
+        <item name="colorAccent">#2196f3</item>
+        <!-- Used for the title and text -->
+        <item name="android:textColorPrimary">#000000</item>
+        <!-- Used for the background -->
+        <item name="android:background">#FFFFFF</item>
+    </style>
+    <!--加载框-->
+    <style name="NoBackgroundDialog" parent="@android:style/Theme.Holo.Light.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+    <style name="line_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0.5dp</item>
+        <item name="android:background">@color/line_bg</item>
+        <item name="android:layout_margin">2dp</item>
+    </style>
+    <!--从上网下 -->
+    <style name="PopupAnimationbottom" parent="android:Animation" mce_bogus="1">
+        <item name="android:windowEnterAnimation">@anim/popup_in</item>
+        <item name="android:windowExitAnimation">@anim/popup_out</item>
+    </style>
+    <!--从左往右 -->
+    <style name="PopupAnimationLeft" parent="android:Animation" mce_bogus="1">
+        <item name="android:windowEnterAnimation">@anim/popup_leftin</item>
+        <item name="android:windowExitAnimation">@anim/popup_leftout</item>
+    </style>
+    <!--从右往左 -->
+    <style name="PopupAnimationRight" parent="android:Animation" mce_bogus="1">
+        <item name="android:windowEnterAnimation">@anim/popup_rightin</item>
+        <item name="android:windowExitAnimation">@anim/popup_rightout</item>
+    </style>
+    <!--从下往上 -->
+    <style name="PopupAnimationTop" parent="android:Animation" mce_bogus="1">
+        <item name="android:windowEnterAnimation">@anim/popup_topin</item>
+        <item name="android:windowExitAnimation">@anim/popup_topout</item>
+    </style>
+    <!--展开 -->
+    <style name="PopupAnimationMiddle" parent="android:Animation" mce_bogus="1">
+        <item name="android:windowEnterAnimation">@anim/popup_middle_in</item>
+        <item name="android:windowExitAnimation">@anim/popup_middle_out</item>
+    </style>
+    <!--帶沉浸式狀態欄的标题栏style-->
+    <style name="TitleStyle.StatusBar" parent="ImmersiveStatusStyle">
+        <item name="android:layout_height">50dp</item>
+        <item name="android:layout_width">match_parent</item>
+    </style>
+    <!--沉浸式状态栏的主题-->
+    <style name="ImmersiveStatusStyle">
+        <item name="android:fitsSystemWindows">true</item>
+        <item name="android:clipToPadding">true</item>
+    </style>
+</resources>
