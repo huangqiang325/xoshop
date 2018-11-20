@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 与主module里面的配置要一模一样 否则会找不到这个文件 Failed to find configured root that contains-->
+    <external-path name="images" path="Android/data/com.bmzn/files/Pictures" />
+    <external-path name="my_download" path="."/>
+</paths>
