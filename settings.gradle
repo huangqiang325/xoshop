@@ -1,0 +1,2 @@
+include ':app','appupdatelibrary'
+rootProject.name = 'mvp'
