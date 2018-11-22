@@ -10,13 +10,16 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
 
 import com.kulian.R;
+import com.kulian.utils.AlertUtils;
 import com.kulian.utils.StatusBarUtil;
+import com.kulian.widget.SlidingLayout;
 
 import butterknife.ButterKnife;
 import io.reactivex.disposables.CompositeDisposable;
@@ -26,7 +29,7 @@ import io.reactivex.disposables.Disposable;
  * Created by Liang_Lu on 2017/12/21.
  */
 
-public abstract class BaseActivity<T extends BasePresenter> extends AppCompatActivity {
+public abstract class BaseActivity<T extends BasePresenter> extends AppCompatActivity   {
     public Context mContext;
     public T mPresenter;
     private AlertDialog loading;
@@ -36,6 +39,7 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
     private LinearLayout linearlayout_status;
     public boolean ifNeedStatus = true;
     public CompositeDisposable mCompositeDisposable;
+    public boolean ifSliding  =true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +50,10 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
             setContentView(setContentViewId());
         } else {
             throw new RuntimeException("layoutResID==-1 have u create your layout?");
+        }
+        SlidingLayout rootView = new SlidingLayout(this);
+        if(ifSliding){
+            rootView.bindActivity(this);
         }
         if(ifNeedStatus){
             int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
@@ -104,7 +112,22 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
             mToast.show();
         }
     }
-
+    public void loadingView(boolean isLoading,String content) {
+        if (isLoading) {
+            if (loading == null) {
+                loading = AlertUtils.loadingDialog(mContext,content);
+            }
+            if (!loading.isShowing()) {
+                loading.show();
+               getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE, WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+            }
+        } else {
+            if (loading != null && loading.isShowing()) {
+                loading.dismiss();
+                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+            }
+        }
+    }
     /**
      * 获取contentView 资源id
      */
@@ -185,4 +208,5 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
                 view.getWindowToken(),
                 InputMethodManager.HIDE_NOT_ALWAYS);
     }
+
 }

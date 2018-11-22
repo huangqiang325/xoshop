@@ -110,12 +110,12 @@ public class HHomeFragment extends BaseFragment<PHHomeImpl> implements CHHome.IV
     public void onResume() {
         super.onResume();
         Log.i(TAG, "onResume----》");
-        refreshLayout.autoRefresh();
     }
 
     @Override
     protected void initView() {
         Log.i(TAG, "initView");
+        refreshLayout.autoRefresh();
         mClassicsHeader = (ClassicsHeader) refreshLayout.getRefreshHeader();
         mClassicsHeader.setAccentColor(getResources().getColor(R.color.square));
 //        mClassicsHeader.getTitleText().setTextColor(getResources().getColor(R.color.square));
@@ -205,9 +205,9 @@ public class HHomeFragment extends BaseFragment<PHHomeImpl> implements CHHome.IV
 
     @Override
     public void showData(List<ItemHomeData> data, int page) {
-       // linearlayoutNodata.setVisibility(View.GONE);
+        // linearlayoutNodata.setVisibility(View.GONE);
         if (page == 1) {
-                refreshLayout.finishRefresh();
+            refreshLayout.finishRefresh();
             mAdapter.replaceData(data);
         } else {
             mAdapter.addData(data);
@@ -219,9 +219,9 @@ public class HHomeFragment extends BaseFragment<PHHomeImpl> implements CHHome.IV
     @Override
     public void showNoData(int page) {
         if (page == 1) {
-                refreshLayout.finishRefresh();
+            refreshLayout.finishRefresh();
             mAdapter.replaceData(new ArrayList<ItemHomeData>());
-           // linearlayoutNodata.setVisibility(View.VISIBLE);
+            // linearlayoutNodata.setVisibility(View.VISIBLE);
         } else {
             refreshLayout.finishLoadMore();
         }

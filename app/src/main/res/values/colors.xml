@@ -4,7 +4,7 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
-    <color name="mainColor">#272427</color>
+    <color name="mainColor">#36455D</color>
     <color name="secondColor">#DEAC5E</color>
     <color name="black">#000000</color>
     <color name="navpage">#FFE1E8EB</color>
@@ -16,6 +16,7 @@
     <!-- jgd-->
     <!-- HQ-->
     <color name="refresh_back">#ededed</color>
+    <color name="indu_notcheck">#8395A7</color>
     <color name="square">#000000</color>
     <color name="c3">#dedede</color>
     <color name="line_bg">#CDCDCD</color>

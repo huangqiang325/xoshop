@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.KeyEvent;
 
 import com.kulian.R;
+import com.kulian.mvp.view.activity.LoginOrRegActivity;
 import com.kulian.utils.AuthPreferences;
 
 /**
@@ -31,17 +32,26 @@ public class SplashActivity extends Activity {
             @Override
             public void run() {
                 String ifFirst = AuthPreferences.getFirst();
-                Log.i("WelcomeGuideActivity","ifFirst---L"+ifFirst);
-                if (TextUtils.isEmpty(ifFirst) || ifFirst.equals("1")) {
-                    //下载后第一次打开app
-                    startActivity(new Intent(SplashActivity.this, WelcomeGuideActivity.class));
+                String userToken = AuthPreferences.getUserToken();
+                if (TextUtils.isEmpty(userToken)) {
+                    startActivity(new Intent(SplashActivity.this, LoginOrRegActivity.class));
+                    SplashActivity.this.finish();
                     overridePendingTransition(R.anim.ap2, R.anim.ap1);// 淡出淡入动画效果
-                } else if(ifFirst.equals("0")){
-                    //下载后不是第一次打开app
+                } else {
                     startActivity(new Intent(SplashActivity.this, HomePageActivity.class));
+                    SplashActivity.this.finish();
                     overridePendingTransition(R.anim.ap2, R.anim.ap1);// 淡出淡入动画效果
                 }
-                SplashActivity.this.finish();
+                Log.i("WelcomeGuideActivity", "ifFirst---L" + ifFirst);
+//                if (TextUtils.isEmpty(ifFirst) || ifFirst.equals("1")) {
+//                    //下载后第一次打开app
+//                    startActivity(new Intent(SplashActivity.this, WelcomeGuideActivity.class));
+//                    overridePendingTransition(R.anim.ap2, R.anim.ap1);// 淡出淡入动画效果
+//                } else if(ifFirst.equals("0")){
+//                    //下载后不是第一次打开app
+//                    startActivity(new Intent(SplashActivity.this, HomePageActivity.class));
+//                    overridePendingTransition(R.anim.ap2, R.anim.ap1);// 淡出淡入动画效果
+//                }
             }
         }, SPLASH_DISPLAY_LENGHT);
     }

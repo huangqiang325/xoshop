@@ -4,9 +4,12 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.support.v7.app.AlertDialog;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.Window;
+import android.widget.TextView;
 
 import com.bigkoo.alertview.AlertView;
 import com.bigkoo.alertview.OnItemClickListener;
@@ -78,7 +81,6 @@ public class AlertUtils {
                                         final GalleryFinal.OnHanlderResultCallback callback, boolean mutiSelect) {
         return new AlertView.Builder().setContext(context)
                 .setStyle(AlertView.Style.ActionSheet)
-                .setTitle("选择操作")
                 .setMessage(null)
                 .setCancelText("取消")
                 .setDestructive("拍照", "从相册中选择")
@@ -174,11 +176,16 @@ public class AlertUtils {
      * @param context
      * @return
      */
-    public static AlertDialog loadingDialog(Context context) {
+    public static AlertDialog loadingDialog(Context context,String content) {
         AlertDialog dialog = new AlertDialog.Builder(context, R.style.NoBackgroundDialog).create();
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.show();
-        dialog.setContentView(LayoutInflater.from(context).inflate(R.layout.__dialog_loading, null));
+        View view = LayoutInflater.from(context).inflate(R.layout.__dialog_loading,null);
+        if(!TextUtils.isEmpty(content)){
+            TextView textview_content = view.findViewById(R.id.textview_content);
+            textview_content.setText(content);
+        }
+        dialog.setContentView(view);
         return dialog;
     }
 

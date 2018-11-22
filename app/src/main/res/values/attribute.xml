@@ -55,7 +55,13 @@
         <!--animation duration-->
         <attr name="animationDuration" format="integer|reference" />
     </declare-styleable>
+    <declare-styleable name="GestureLayout">
 
+        <attr name="leftDrawable" format="reference"/>
+        <attr name="rightDrawable" format="reference"/>
+        <attr name="bottomDrawable" format="reference"/>
+
+    </declare-styleable>
     <declare-styleable name="BubbleView">
         <attr name="arrowWidth" format="dimension" />
         <attr name="angle" format="dimension" />
@@ -111,7 +117,7 @@
 
     <!--TabIndicator的参数设置-->
     <declare-styleable name="PagerSlidingTab">
-        <attr name="indicatorColor" format="color" />
+        <attr name="indicatorColor1" format="color" />
         <attr name="underlineColor" format="color" />
         <attr name="dividerColor" format="color" />
         <attr name="indicatorHeight" format="dimension" />
@@ -202,7 +208,12 @@
         <!--设置每页显示几个-->
         <attr name="SoreNumber" format="integer" />
     </declare-styleable>
-
+    <declare-styleable name="IndicatorView">
+        <attr name="indicatorColor" format="color"/>
+        <attr name="indicatorColorSelected" format="color"/>
+        <attr name="indicatorWidth" format="integer"/>
+        <attr name="gravity" format="integer"/>
+    </declare-styleable>
     <!-- 折叠展开textview -->
     <declare-styleable name="ExpandableTextView">
         <attr name="etv_MaxLinesOnShrink" format="reference|integer" />

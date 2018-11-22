@@ -11,6 +11,7 @@ public class Constant {
 
     public final static int REQUEST_CODE_CAMERA = 1000;
     public final static int REQUEST_CODE_GALLERY = 1001;
+    public final static int SECONDS_FORBID = 2;
 
 
 

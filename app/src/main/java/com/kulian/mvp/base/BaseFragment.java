@@ -11,9 +11,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.kulian.R;
 import com.kulian.utils.AlertUtils;
 import com.kulian.utils.PermissionUtils;
@@ -108,6 +111,9 @@ public abstract class BaseFragment<T extends BasePresenter> extends BaseTFragmen
             linearlayout_status.setLayoutParams(paras);
         }
     }
+    public void LoadImageUrl (ImageView id, String imageurl){
+        Glide.with(getActivity()).load(imageurl).into(id);
+    }
     protected void showToast(final String text) {
         if (mToast == null) {
             mToast = Toast.makeText(getActivity(), text, Toast.LENGTH_LONG);
@@ -143,17 +149,20 @@ public abstract class BaseFragment<T extends BasePresenter> extends BaseTFragmen
     public void baseToLogin(){
         //startActivity(new Intent(getActivity(),LoginActivity.class));
     }
-    public void loadingView(boolean isLoading) {
+    public void loadingView(boolean isLoading,String content) {
         if (isLoading) {
             if (loading == null) {
-                loading = AlertUtils.loadingDialog(getActivity());
+                loading = AlertUtils.loadingDialog(getActivity(),content);
             }
             if (!loading.isShowing()) {
                 loading.show();
+                getActivity().getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE, WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+
             }
         } else {
             if (loading != null && loading.isShowing()) {
                 loading.dismiss();
+                getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
             }
         }
     }

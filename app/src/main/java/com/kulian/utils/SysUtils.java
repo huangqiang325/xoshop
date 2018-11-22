@@ -49,6 +49,7 @@ import java.math.BigDecimal;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.DateFormat;
@@ -66,6 +67,8 @@ import java.util.TimeZone;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import cn.finalteam.toolsfinal.StringUtils;
+
 //import com.amap.api.maps2d.model.LatLng;
 //import com.amap.api.services.core.LatLonPoint;
 
@@ -76,28 +79,105 @@ import java.util.regex.Pattern;
  */
 public class SysUtils {
     public static DecimalFormat df = new DecimalFormat("#.#");
-    public static SimpleDateFormat sf1 = new SimpleDateFormat("yyyy-MM-dd HH:mm",Locale.CHINA);
-    public static SimpleDateFormat sf2 = new SimpleDateFormat("HH:mm",Locale.CHINA);
+    public static SimpleDateFormat sf1 = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.CHINA);
+    public static SimpleDateFormat sf2 = new SimpleDateFormat("HH:mm", Locale.CHINA);
 
     public static final String VERSION_NAME = "version_name";
     public static final String VERSION_CODE = "version_code";
     private static final String TAG = "SysUtil";
     private static Bitmap bitmap = null;
 
-    public static String getJsonString(Object object){
+    /**
+     * @param plainText 明文
+     * @return 32位密文
+     */
+    public static String md5_32(String plainText) {
+        String re_md5 = new String();
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            md.update(plainText.getBytes());
+            byte b[] = md.digest();
+
+            int i;
+
+            StringBuffer buf = new StringBuffer("");
+            for (int offset = 0; offset < b.length; offset++) {
+                i = b[offset];
+                if (i < 0)
+                    i += 256;
+                if (i < 16)
+                    buf.append("0");
+                buf.append(Integer.toHexString(i));
+            }
+
+            re_md5 = buf.toString();
+
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return re_md5;
+    }
+
+
+    public static String getToken(){
+        String token = "";
+        String userString = AuthPreferences.getUserToken();
+        if (TextUtils.isEmpty(userString)) {
+            token = "";
+        } else {
+            com.alibaba.fastjson.JSONObject jsonObject = com.alibaba.fastjson.JSONObject.parseObject(userString);
+              token = jsonObject.getString("token");
+
+        }
+        return  token;
+    }
+    public static String getSecret(){
+        String secret = "";
+        String userString = AuthPreferences.getUserToken();
+        if (TextUtils.isEmpty(userString)) {
+            secret = "";
+        } else {
+            com.alibaba.fastjson.JSONObject jsonObject = com.alibaba.fastjson.JSONObject.parseObject(userString);
+            secret = jsonObject.getString("secretKey");
+
+        }
+        return  secret;
+    }
+    public static String getTime(){
+        return String.valueOf(new Date().getTime()/1000);
+    }
+    public static String getSign(Map<String, String> data,String time) {
+        String secretKey = getSecret();
+        String sign = "";
+        StringBuffer sb = new StringBuffer();
+        if (data != null && data.size() > 0) {
+            for (String key : data.keySet()) {
+                sb.append(key + "=");
+                if (StringUtils.isEmpty(data.get(key))) {
+                    sb.append("''&");
+                } else {
+                    String value = data.get(key);
+                    try {
+                        value = URLEncoder.encode(value, "UTF-8");
+                    } catch (UnsupportedEncodingException e) {
+                        e.printStackTrace();
+                    }
+                    sb.append(value + "&");
+                }
+            }
+        }
+        sb.append(secretKey).append(time);
+        sign = sb.toString();
+        Log.i(TAG,"未加密的sign为----》"+sign);
+        return md5_32(sign);
+
+    }
+
+    public static String getJsonString(Object object) {
         String jsonString = com.alibaba.fastjson.JSONObject.toJSONString(object);
         return jsonString;
     }
-    public static String getToken(){
-        String tokenString = AuthPreferences.getUserToken();
-        if (TextUtils.isEmpty(tokenString)) {
-            Log.i(TAG, "没有存储用户信息");
-            return "";
-        }
-        com.alibaba.fastjson.JSONObject tokenObject = com.alibaba.fastjson.JSONObject.parseObject(tokenString);
-        String token = tokenObject.getString("token");
-        return token;
-    }
+
     public static Bitmap getSmallBitmap(String filePath) {
 
         final BitmapFactory.Options options = new BitmapFactory.Options();
@@ -111,25 +191,26 @@ public class SysUtils {
         options.inJustDecodeBounds = false;
 
         Bitmap bm = BitmapFactory.decodeFile(filePath, options);
-        if(bm == null){
-            return  null;
+        if (bm == null) {
+            return null;
         }
-        ByteArrayOutputStream baos = null ;
-        try{
+        ByteArrayOutputStream baos = null;
+        try {
             baos = new ByteArrayOutputStream();
             bm.compress(Bitmap.CompressFormat.JPEG, 30, baos);
 
-        }finally{
+        } finally {
             try {
-                if(baos != null)
-                    baos.close() ;
+                if (baos != null)
+                    baos.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-        return bm ;
+        return bm;
 
     }
+
     private static int calculateInSampleSize(BitmapFactory.Options options,
                                              int reqWidth, int reqHeight) {
         // Raw height and width of image
@@ -156,7 +237,7 @@ public class SysUtils {
     }
 
 
-    public static String getRealPathFromURI(Context context,Uri contentUri) {
+    public static String getRealPathFromURI(Context context, Uri contentUri) {
         String res = null;
         String[] proj = {MediaStore.Images.Media.DATA};
         Cursor cursor = context.getContentResolver().query(contentUri, proj, null, null, null);
@@ -170,7 +251,7 @@ public class SysUtils {
     }
 
 
-    public static Bitmap returnBitMap(final String url){
+    public static Bitmap returnBitMap(final String url) {
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -182,7 +263,7 @@ public class SysUtils {
                     e.printStackTrace();
                 }
                 try {
-                    HttpURLConnection conn = (HttpURLConnection)imageurl.openConnection();
+                    HttpURLConnection conn = (HttpURLConnection) imageurl.openConnection();
                     conn.setDoInput(true);
                     conn.connect();
                     InputStream is = conn.getInputStream();
@@ -196,23 +277,26 @@ public class SysUtils {
 
         return bitmap;
     }
+
     public static String getTimeByTimeStamp(int timestampString) {
         String formats = "yyyy-MM-dd HH:mm:ss";
         Long timestamp = Long.parseLong(String.valueOf(timestampString)) * 1000;
         String date = new SimpleDateFormat(formats, Locale.CHINA).format(new Date(timestamp));
         return date;
     }
-    public static String getTimeByTimeStampByType(int timestampString,SimpleDateFormat sdf) {
+
+    public static String getTimeByTimeStampByType(int timestampString, SimpleDateFormat sdf) {
         String formats = "yyyy-MM-dd HH:mm:ss";
         Long timestamp = Long.parseLong(String.valueOf(timestampString)) * 1000;
         String date = sdf.format(new Date(timestamp));
         return date;
     }
-    public static String getTimeByTimeStampMinute(long timestampString ) {
+
+    public static String getTimeByTimeStampMinute(long timestampString) {
         String formats = "yyyy-MM-dd HH:mm";
         Long timestamp = Long.parseLong(String.valueOf(timestampString)) * 1000;
-        String date =  new SimpleDateFormat(formats,Locale.CHINA).format(new Date(timestamp));
-        Log.i(TAG,date);
+        String date = new SimpleDateFormat(formats, Locale.CHINA).format(new Date(timestamp));
+        Log.i(TAG, date);
         return date;
     }
 
@@ -246,6 +330,7 @@ public class SysUtils {
         }
         return result;
     }
+
     /**
      * 聊天数据String型时间戳格式化
      *
@@ -317,8 +402,8 @@ public class SysUtils {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm");
         SimpleDateFormat simpleDateFormat_hour = new SimpleDateFormat("HH");
         Date date = new Date();
-        date.setTime( Long.parseLong(time)*1000);
-        Log.i(TAG,"simpleDateFormat.format(date)___>"+simpleDateFormat.format(date));
+        date.setTime(Long.parseLong(time) * 1000);
+        Log.i(TAG, "simpleDateFormat.format(date)___>" + simpleDateFormat.format(date));
         if (isThisYear(date)) {//今年
             if (isToday(date)) { //今天
                 int minute = minutesAgo(Long.parseLong(time));
@@ -329,7 +414,7 @@ public class SysUtils {
                         return minute + "分钟前";
                     }
                 } else {
-                    return (Integer.parseInt(simpleDateFormat_hour.format(date))>12?"下午":"下午") +simpleDateFormat.format(date);
+                    return (Integer.parseInt(simpleDateFormat_hour.format(date)) > 12 ? "下午" : "下午") + simpleDateFormat.format(date);
                 }
             } else {
                 if (isYestYesterday(date)) {//昨天，显示昨天
@@ -397,11 +482,12 @@ public class SysUtils {
         Date now = new Date();
         return date.getYear() == now.getYear();
     }
+
     //根据过去的秒数获取时间
     public static String formatDateTime(String seconds_) {
         String DateTimes = null;
         long dateNow = System.currentTimeMillis() / 1000;
-        long mss =dateNow- Long.parseLong(seconds_);
+        long mss = dateNow - Long.parseLong(seconds_);
         long days = mss / (60 * 60 * 24);
         long hours = (mss % (60 * 60 * 24)) / (60 * 60);
         long minutes = (mss % (60 * 60)) / 60;
@@ -409,22 +495,21 @@ public class SysUtils {
         if (days > 0) {
 //            DateTimes= days + "天" + hours + "小时" + minutes + "分钟"
 //                    + seconds + "秒";
-            DateTimes = getTimeByTimeStampByType(Integer.parseInt(seconds_),sf1);
+            DateTimes = getTimeByTimeStampByType(Integer.parseInt(seconds_), sf1);
         } else if (hours > 0) {
 //            DateTimes=hours + "小时" + minutes + "分钟"
 //                    + seconds + "秒";
 
             DateTimes = hours + "小时前";
-        }
-        else if ( minutes > 5) {
+        } else if (minutes > 5) {
 //            DateTimes=minutes + "分钟"
 //                    + seconds + "秒";
             DateTimes = minutes + "分钟前";
-        } else  {
+        } else {
             DateTimes = "刚刚";
         }
 
-        return DateTimes ;
+        return DateTimes;
     }
 
     //金额验证
@@ -1241,6 +1326,7 @@ public class SysUtils {
         Bitmap bitmap = view.getDrawingCache();
         return bitmap;
     }
+
     //判断app是否在后台运行
     public static boolean isBackground(Context context) {
         ActivityManager activityManager = (ActivityManager) context
@@ -1270,6 +1356,7 @@ public class SysUtils {
         }
         return false;
     }
+
     //判断通知功能是否被开启
     private static final String CHECK_OP_NO_THROW = "checkOpNoThrow";
     private static final String OP_POST_NOTIFICATION = "OP_POST_NOTIFICATION";
@@ -1305,23 +1392,24 @@ public class SysUtils {
         }
         return false;
     }
+
     //数组元素互换位置
-    public static <T> void swap1(List<T> list, int oldPosition, int newPosition){
-        if(null == list){
+    public static <T> void swap1(List<T> list, int oldPosition, int newPosition) {
+        if (null == list) {
             throw new IllegalStateException("The list can not be empty...");
         }
         T tempElement = list.get(oldPosition);
 
         // 向前移动，前面的元素需要向后移动
-        if(oldPosition < newPosition){
-            for(int i = oldPosition; i < newPosition; i++){
+        if (oldPosition < newPosition) {
+            for (int i = oldPosition; i < newPosition; i++) {
                 list.set(i, list.get(i + 1));
             }
             list.set(newPosition, tempElement);
         }
         // 向后移动，后面的元素需要向前移动
-        if(oldPosition > newPosition){
-            for(int i = oldPosition; i > newPosition; i--){
+        if (oldPosition > newPosition) {
+            for (int i = oldPosition; i > newPosition; i--) {
                 list.set(i, list.get(i - 1));
             }
             list.set(newPosition, tempElement);

@@ -9,4 +9,6 @@
     <!-- 字体大小 -->
     <dimen name="text_subhead">17sp</dimen>
     <dimen name="text_body">10sp</dimen>
+    <dimen name="login_edit_height">44dp</dimen>
+    <dimen name="login_edit_margin_hon">37.5dp</dimen>
 </resources>

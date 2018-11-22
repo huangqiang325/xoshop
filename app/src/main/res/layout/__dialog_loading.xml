@@ -11,14 +11,14 @@
     android:paddingRight="32dp"
     android:paddingTop="8dp">
 
-    <com.kulian.ui.SmoothRoundProgressBar
+    <com.kulian.widget.SmoothRoundProgressBar
         android:layout_width="20dp"
         android:layout_height="20dp"
         app:cpb_duration="1200"
-        app:cpb_endColor="@android:color/holo_green_light"
-        app:cpb_startColor="@android:color/holo_purple" />
+    />
 
     <TextView
+        android:id="@+id/textview_content"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
