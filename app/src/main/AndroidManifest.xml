@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.kulian">
+    package="com.xoshop">
 
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -48,7 +48,7 @@
         android:required="true" />
 
     <application
-        android:name=".DevMvpApplication"
+        android:name="com.xoshop.DevMvpApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -83,7 +83,7 @@
         </receiver>
 
         <activity
-            android:name=".mvp.view.activity.BookActivity"
+            android:name="com.xoshop.mvp.view.activity.BookActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait"
             android:theme="@style/ActivityTheme"
@@ -95,28 +95,28 @@
             <!-- </intent-filter> -->
         </activity>
         <activity
-            android:name=".comm.activity.HomePageActivity"
+            android:name="com.xoshop.comm.activity.HomePageActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@style/ActivityTheme"
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan"></activity>
         <activity
-            android:name=".comm.activity.WebViewActivity"
+            android:name="com.xoshop.comm.activity.WebViewActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustPan"></activity>
         <activity
-            android:name=".comm.activity.WelcomeGuideActivity"
+            android:name="com.xoshop.comm.activity.WelcomeGuideActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
         <activity
-            android:name=".comm.activity.SplashActivity"
+            android:name="com.xoshop.comm.activity.SplashActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait"
             android:theme="@style/ThemeSplash"
@@ -128,7 +128,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".comm.activity.PopDemoActivity"
+            android:name="com.xoshop.comm.activity.PopDemoActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
@@ -140,13 +140,13 @@
             <!-- </intent-filter> -->
         </activity>
         <activity
-            android:name=".comm.activity.HuanXinActivity"
+            android:name="com.xoshop.comm.activity.HuanXinActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustPan"></activity>
         <activity
-            android:name=".comm.activity.PerActivity"
+            android:name="com.xoshop.comm.activity.PerActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
@@ -158,13 +158,19 @@
             <!-- </intent-filter> -->
         </activity>
         <activity
-            android:name=".mvp.view.activity.LoginOrRegActivity"
+            android:name="com.xoshop.mvp.view.activity.LoginOrRegActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait"
             android:theme="@style/ActivityTheme"
             android:windowSoftInputMode="adjustPan"></activity>
         <activity
-            android:name=".mvp.module.moments.ReleaseMomentActivity"
+            android:name="com.xoshop.mvp.module.person.PersonInfoActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/ActivityTheme"
+            android:windowSoftInputMode="adjustPan"></activity>
+        <activity
+            android:name="com.xoshop.mvp.module.moments.ReleaseMomentActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait"
             android:theme="@style/ActivityTheme"

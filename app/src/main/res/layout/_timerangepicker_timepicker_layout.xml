@@ -37,18 +37,18 @@
                     android:orientation="horizontal"
                     android:layout_height="match_parent">
 
-                    <com.kulian.ui.TimeRangePicker.wheel.WheelView
+                    <com.xoshop.ui.TimeRangePicker.wheel.WheelView
                         android:id="@+id/year"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         />
 
-                    <com.kulian.ui.TimeRangePicker.wheel.WheelView
+                    <com.xoshop.ui.TimeRangePicker.wheel.WheelView
                         android:id="@+id/month"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent" />
 
-                    <com.kulian.ui.TimeRangePicker.wheel.WheelView
+                    <com.xoshop.ui.TimeRangePicker.wheel.WheelView
                         android:id="@+id/day"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent" />
@@ -60,29 +60,29 @@
                         android:background="#D0D0D0"
                         />
 
-                    <com.kulian.ui.TimeRangePicker.wheel.WheelView
+                    <com.xoshop.ui.TimeRangePicker.wheel.WheelView
                         android:id="@+id/hour"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:visibility="gone" />
 
-                    <com.kulian.ui.TimeRangePicker.wheel.WheelView
+                    <com.xoshop.ui.TimeRangePicker.wheel.WheelView
                         android:id="@+id/minute"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:visibility="gone" />
 
-                    <com.kulian.ui.TimeRangePicker.wheel.WheelView
+                    <com.xoshop.ui.TimeRangePicker.wheel.WheelView
                         android:id="@+id/finish_year"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent" />
 
-                    <com.kulian.ui.TimeRangePicker.wheel.WheelView
+                    <com.xoshop.ui.TimeRangePicker.wheel.WheelView
                         android:id="@+id/finish_month"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent" />
 
-                    <com.kulian.ui.TimeRangePicker.wheel.WheelView
+                    <com.xoshop.ui.TimeRangePicker.wheel.WheelView
                         android:id="@+id/finish_day"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"

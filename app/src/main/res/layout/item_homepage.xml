@@ -5,7 +5,7 @@
     android:id="@+id/rl_out"
     android:layout_width="match_parent"
     android:layout_height="120dp">
-  <com.kulian.widget.RoundAngleImageView
+  <com.xoshop.widget.RoundAngleImageView
       android:id="@+id/imageview_left"
       android:layout_marginLeft="16dp"
       android:layout_width="100dp"

@@ -3,12 +3,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#333333">
-    <com.kulian.ui.HackyViewPager
+    <com.xoshop.ui.HackyViewPager
         android:id="@+id/tupian_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    </com.kulian.ui.HackyViewPager>
+    </com.xoshop.ui.HackyViewPager>
     <TextView
         android:id="@+id/tupian_page_total_tv"
         android:layout_width="wrap_content"

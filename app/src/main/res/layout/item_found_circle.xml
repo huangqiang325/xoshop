@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     android:background="#FFFFFFFF">
 
-    <com.kulian.widget.CircleImageView
+    <com.xoshop.widget.CircleImageView
         android:id="@+id/headimage_imag_circle"
         android:layout_width="60dp"
         android:layout_height="60dp"

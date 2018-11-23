@@ -21,7 +21,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:srlAccentColor="@color/black" />
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -32,83 +31,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:background="@color/mainColor"></RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="150dp"
-                    android:background="@color/mainColor">
-
-                    <RelativeLayout
-                        android:id="@+id/rl_touxiang"
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginTop="5dp"
-                        android:padding="2dp"
-                        android:background="@drawable/__circle_touxiang"
-                        >
-                        <com.kulian.widget.CircleImageView
-                            android:id="@+id/imageview_touxiang"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_centerInParent="true"
-                            android:src="@mipmap/ic_launcher"
-                            />
-
-                    </RelativeLayout>
-                    <TextView
-                        android:id="@+id/textview_nickname"
-                        android:layout_below="@+id/rl_touxiang"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginTop="7dp"
-                        android:textColor="#8395A7"
-                        android:textSize="14sp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-                    <android.support.v7.widget.RecyclerView
-                        android:id="@+id/recyclerview_industry"
-                        android:layout_width="wrap_content"
-                        android:layout_marginBottom="12.5dp"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
-                        android:overScrollMode="never"
-                        android:scrollbars="none">
-                    </android.support.v7.widget.RecyclerView>
-
-                </RelativeLayout>
-                <LinearLayout
-                    android:id="@+id/home_entrance"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    xmlns:android="http://schemas.android.com/apk/res/android"
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
-                    android:orientation="vertical">
-                <android.support.v4.view.ViewPager
-                    android:id="@+id/main_home_entrance_vp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-
-                <com.kulian.widget.IndicatorView
-                    android:id="@+id/main_home_entrance_indicator"
-                    android:layout_width="match_parent"
-                    android:layout_height="32dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_gravity="bottom"
-                    android:layout_marginRight="16dp"
-                    app:gravity="0"
-                    app:indicatorColor="#668b8989"
-                    app:indicatorColorSelected="#FF5722"
-                    app:indicatorWidth="6"/>
-                </LinearLayout>
                 <android.support.v7.widget.RecyclerView
-                    android:id="@+id/recyclerView_comment"
+                    android:id="@+id/recyclerView_moment"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="#f5f5f5"
                     android:clipToPadding="false"
                     tools:listitem="@android:layout/simple_list_item_2" />
             </LinearLayout>
-
             <com.scwang.smartrefresh.layout.footer.ClassicsFooter
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
@@ -124,6 +54,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
+                android:layout_marginTop="16dp"
                 android:layout_marginLeft="16dp"
                 android:background="@null"
                 android:src="@drawable/scan" />
@@ -133,6 +64,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
+                android:layout_marginTop="16dp"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="16dp"
                 android:background="@null"
